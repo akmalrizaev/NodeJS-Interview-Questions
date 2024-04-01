@@ -1,0 +1,3 @@
+Initializing Project usin NPM:
+npm init 
+npm init -y
