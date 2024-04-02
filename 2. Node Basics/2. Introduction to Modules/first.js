@@ -14,6 +14,10 @@
 // console.log(cObj.multiply(8, 2));
 // console.log(cObj.subtract(8, 2));
 
+// Basic Debugging
+// node --inspect-brk first.js
+// The debugger is on, but it needs to be opened in a seperate debegger window.
+
 const { add, divide, multiply, subtract } = require('./calc');
 
 console.log(add(8, 2));
