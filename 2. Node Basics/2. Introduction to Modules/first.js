@@ -7,6 +7,16 @@
 // we need to export it as a module from that file.
 // & import it using the require statement.
 
-const add = require('./calc');
+// const cObj = require('./calc');
+
+// console.log(cObj.add(8, 2));
+// console.log(cObj.divide(8, 2));
+// console.log(cObj.multiply(8, 2));
+// console.log(cObj.subtract(8, 2));
+
+const { add, divide, multiply, subtract } = require('./calc');
 
 console.log(add(8, 2));
+console.log(divide(8, 2));
+console.log(multiply(8, 2));
+console.log(subtract(8, 2));

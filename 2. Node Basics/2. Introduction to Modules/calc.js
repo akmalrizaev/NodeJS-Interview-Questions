@@ -5,4 +5,30 @@ const add = (a, b) => {
   return a + b;
 };
 
-module.exports = add; // This will export the "add" function.
+const subtract = (a, b) => {
+  return a - b;
+};
+
+const multiply = (a, b) => {
+  return a * b;
+};
+
+const divide = (a, b) => {
+  return a / b;
+};
+
+// const cObj = {
+//   add: add,
+//   subtract: subtract,
+//   multiply: multiply,
+//   divide: divide,
+// };
+
+const cObj = {
+  add,
+  subtract,
+  multiply,
+  divide,
+};
+
+module.exports = cObj;
