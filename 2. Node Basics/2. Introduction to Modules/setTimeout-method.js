@@ -38,3 +38,27 @@ stopTimer();
 
 // To repeat the process on regular intervals of time,
 // we have the "setInterval()" method.
+
+// setInterval()
+// Used to repeat a process on regular intervals of time
+// Useful in real-life situations.
+// setInterval(() => {}, TimeInterval)
+
+//  setInterval(seperateFunction, TimeInterval)
+// function seperateFunction() {
+// code
+// }
+
+// Let's create a counter that will increment
+// & display value starting with 1 using setInterval()
+
+let i = 1;
+
+function startCounter() {
+  setInterval(() => {
+    console.log(i);
+    i++;
+  }, 1000);
+}
+
+startCounter();
