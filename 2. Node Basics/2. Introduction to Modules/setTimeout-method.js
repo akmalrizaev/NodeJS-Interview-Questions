@@ -55,10 +55,20 @@ stopTimer();
 let i = 1;
 
 function startCounter() {
-  setInterval(() => {
-    console.log(i);
-    i++;
+  timerObj = setInterval(() => {
+    if (i <= 5) {
+      console.log(i);
+      i++;
+    } else {
+      clearInterval(timerObj);
+    }
   }, 1000);
 }
 
 startCounter();
+
+//  clearInterval()
+// For stopping or clearing the setInterval(),
+// we have another global method called clearInterval()
+// clearInterval(InstanceObject)
+// InstanceObject = setInterval(() => {}, Milliseconds)
