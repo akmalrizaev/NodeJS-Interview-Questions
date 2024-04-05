@@ -94,3 +94,8 @@ console.log(process);
 
 // process.memoryUsage()
 // To check the memory usage
+
+// Process.argv
+// allows to deal with the command line arguments
+console.log(process.argv);
+console.log('Hello ' + process.argv[2]);
