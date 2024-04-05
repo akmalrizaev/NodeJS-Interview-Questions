@@ -99,3 +99,20 @@ console.log(process);
 // allows to deal with the command line arguments
 console.log(process.argv);
 console.log('Hello ' + process.argv[2]);
+
+// process.on()
+// Process Event Handling
+// that can handle various events & life cycle
+// of a node process
+// process.on(event, () => {})
+// Let's display a message just before exiting the process
+
+process.on('beforeExit', () => {
+  console.log('Before Exit Fired!');
+});
+
+process.on('exit', () => {
+  console.log('Exit Event Fired!');
+});
+
+console.log('Process Started');
