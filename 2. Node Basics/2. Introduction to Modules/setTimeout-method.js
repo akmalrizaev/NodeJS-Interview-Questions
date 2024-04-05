@@ -52,6 +52,12 @@ stopTimer();
 // Let's create a counter that will increment
 // & display value starting with 1 using setInterval()
 
+//  clearInterval()
+// For stopping or clearing the setInterval(),
+// we have another global method called clearInterval()
+// clearInterval(InstanceObject)
+// InstanceObject = setInterval(() => {}, Milliseconds)
+
 let i = 1;
 
 function startCounter() {
@@ -67,8 +73,24 @@ function startCounter() {
 
 startCounter();
 
-//  clearInterval()
-// For stopping or clearing the setInterval(),
-// we have another global method called clearInterval()
-// clearInterval(InstanceObject)
-// InstanceObject = setInterval(() => {}, Milliseconds)
+// The "process"
+// Global Object
+// Contains the information of the ongoing Node process -
+// & also gives control over it.
+// Gives some lifecycle methods as well.
+// Multiple properties offered by "process" that allow
+//  to take control over the Node processes
+
+console.log(process);
+
+// process.on()
+// Execute some process on various stages of execution
+
+// process.kill()
+// To terminate a process
+
+// process.uptime()
+// To get the duration of the running process
+
+// process.memoryUsage()
+// To check the memory usage
