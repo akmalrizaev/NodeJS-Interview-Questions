@@ -13,7 +13,14 @@
 // ".alloc()" method to create a buffer.
 // A buffer is a fixed size container
 
+// Buffer.from()
+// To make it dynamic, we can use ".from()" instead of ".alloc()"
+// "Dynamic" means that the Buffer will adapt to the initial value,
+// however it is still a fixed memory container & cannot be changed.
+
 const buff = Buffer.alloc(5);
-buff.write('Hello');
+const buff1 = Buffer.from('Hi');
+buff.write('Hi');
 console.log(buff);
+console.log(buff1);
 console.log(buff.toString());
