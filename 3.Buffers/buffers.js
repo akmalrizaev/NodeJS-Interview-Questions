@@ -24,3 +24,15 @@ buff.write('Hi');
 console.log(buff);
 console.log(buff1);
 console.log(buff.toString());
+
+// Changing Buffer Values
+// The ".fill()" method allows us to store new values in a buffer.
+
+const buff2 = Buffer.from('Buffers');
+buff2.fill('NewValue');
+console.log(buff2.toString()); // -> NewValu
+
+// The ".byteLenght()" returns the number of bytes
+// occupied by a buffer object.
+
+console.log(Buffer.byteLength(buff2)); // 7
