@@ -18,3 +18,13 @@ fs.stat('../node_modules', (err, data) => {
     console.log(data);
   }
 });
+
+// Does it Exist?
+// fs.existsSync() -> Synchronous method
+// fs.exists() -> Asynchronous method
+
+//  Let's check if there is any entity named - "index.js"
+
+let existFlag = fs.existsSync(process.argv[2]);
+
+console.log(existFlag);
