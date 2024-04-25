@@ -6,3 +6,22 @@
 
 // Application level middleware
 // Route level middleware
+
+const express = require('express');
+const app = express();
+
+const myMiddleware = (req, res, next) => {
+  console.log('Middleware Called!');
+  next();
+};
+
+app.use(myMiddleware);
+
+app.get('/', (req, res) => {
+  console.log('Response Sent');
+  res.send('Response');
+});
+
+app.listen(3000, () => {
+  console.log('Server is Running...');
+});
