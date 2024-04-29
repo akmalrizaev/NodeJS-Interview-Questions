@@ -13,3 +13,8 @@
 .custom-card .card_image {
   height: 24rem;
 }
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
