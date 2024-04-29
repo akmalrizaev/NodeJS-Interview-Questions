@@ -4,7 +4,7 @@ const path = require('path');
 const dirPath = require('../utils/path');
 
 router.get('/', (req, res) => {
-  res.sendFile(path.join(dirPath, 'views', 'store.html'));
+  res.render('store');
 });
 
 module.exports = router;

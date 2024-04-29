@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+app.set('view engine', 'pug');
+app.set('views', 'views');
+
 const store = require('./routes/store');
 const newProduct = require('./routes/newProduct');
 
