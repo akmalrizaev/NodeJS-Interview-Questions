@@ -19,3 +19,4 @@ router.post('/', (req, res) => {
 });
 
 exports.route = router;
+exports.products = products;
