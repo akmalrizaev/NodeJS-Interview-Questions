@@ -19,9 +19,14 @@ html(lang="en")
 
 
         .card-container.pt-3
-            each product in products
-                .card.m-3.custom-card
-                    img.card-img-top.card_image(src="../assets/"+product.img, alt=product.title)
-                    .card-body
-                        h3.card-title.m-1 #{product.title}
-                        button.btn.btn-warning.w-100.mt-3 Add to Cart
+            if products.length > 0
+                each product in products
+                    .card.m-3.custom-card
+                        img.card-img-top.card_image(src="../assets/"+product.img, alt=product.title)
+                        .card-body
+                            h3.card-title.m-1 #{product.title}
+                            button.btn.btn-warning.w-100.mt-3 Add to Cart
+            else 
+                .m-5.p-5 
+                    h1 No Product Available 
+                    a.btn.btn-outline-dark.fs-4.my-3(href='/new_product') Add Product
