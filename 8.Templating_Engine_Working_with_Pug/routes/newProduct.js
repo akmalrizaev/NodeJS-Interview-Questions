@@ -8,15 +8,15 @@ const products = [];
 
 router.use(bodyParser.urlencoded());
 
-router.get('/', (req, res) => {
-  res.render('new-product');
-});
+router.get('/',(req,res)=>{
+  res.render('new-product', {selectedPage:'newProduct'});
+})
 
-router.post('/', (req, res) => {
-  products.push({ title: req.body.title, img: req.body.img });
+router.post('/',(req,res)=>{
+  products.push({title:req.body.title, img:req.body.img});
   console.log(products);
   res.redirect('/');
-});
+})
 
 exports.route = router;
 exports.products = products;

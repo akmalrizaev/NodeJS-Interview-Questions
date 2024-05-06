@@ -12,8 +12,8 @@ html(lang="en")
             .container-fluid
                 .collapse.navbar-collapse
                     ul.navbar-nav
-                        li.nav-item
-                            a.nav-link.text-dark.fs-4.px-3.selected(href="/") Store 
-                        li.nav-item
+                        li.nav-item( class=(selectedPage==='store' ? 'selected' : '') )
+                            a.nav-link.text-dark.fs-4.px-3(href="/") Store 
+                        li.nav-item( class=(selectedPage==='newProduct' ? 'selected' : '') )
                             a.nav-link.text-dark.fs-4.px-3(href="/new_product") New Product 
         block content
