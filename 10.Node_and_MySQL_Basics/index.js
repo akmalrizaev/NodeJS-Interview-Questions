@@ -23,6 +23,12 @@ pool.getConnection((err, connection) => {
       }
     });
     console.log('Connection Established');
+    pool.query(
+      'insert into products(id, productname, price) values(4, "oranges", 300)',
+      (err, rsh) => {
+        console.log(rsh);
+      }
+    );
   }
 });
 
