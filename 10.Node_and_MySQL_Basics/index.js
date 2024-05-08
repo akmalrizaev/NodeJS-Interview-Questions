@@ -15,6 +15,13 @@ pool.getConnection((err, connection) => {
   if (err) {
     console.log(err.sqlMessage);
   } else {
+    pool.query('select * from products', (error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(data);
+      }
+    });
     console.log('Connection Established');
   }
 });
