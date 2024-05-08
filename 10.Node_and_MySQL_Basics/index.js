@@ -36,6 +36,13 @@ pool.getConnection((err, connection) => {
         console.log(rsh);
       }
     });
+    pool.query('delete from products where id=4', (error, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(rsh);
+      }
+    });
   }
 });
 
