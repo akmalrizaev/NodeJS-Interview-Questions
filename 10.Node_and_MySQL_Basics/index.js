@@ -43,6 +43,9 @@ pool.getConnection((err, connection) => {
         console.log(rsh);
       }
     });
+    pool.execute('select * from products', (error, data) => {
+      console.log(data);
+    });
   }
 });
 
