@@ -29,6 +29,13 @@ pool.getConnection((err, connection) => {
         console.log(rsh);
       }
     );
+    pool.query('update products set price=30 where id=4', (error, rsh) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(rsh);
+      }
+    });
   }
 });
 
