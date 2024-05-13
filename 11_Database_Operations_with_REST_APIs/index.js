@@ -32,3 +32,10 @@ app.get('/getData', (req, res) => {
 const server = app.listen(3000, () => {
   console.log('Server is Running...');
 });
+
+// Status codes
+// - Code(100-199) : Informational responses
+// - Code(200-299) : Successful responses
+// - Code(300-399) : Redirection messages
+// - Code(400-499) : Client error responses
+// - Code(500-599) : Server error responses
