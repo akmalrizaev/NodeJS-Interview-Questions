@@ -29,6 +29,26 @@ app.get('/getData', (req, res) => {
   });
 });
 
+// Inserting Data with POST Request
+app.post('/postdata', (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) {
+      res.send(err.sqlMessage).status(500);
+    } else {
+      pool.execute(
+        'insert into products(id, productname, price) values(5, "New Product"',
+        (error, data) => {
+          if (error) {
+            res.send(error).status(500);
+          } else {
+            res.send(data).status(201);
+          }
+        }
+      );
+    }
+  });
+});
+
 const server = app.listen(3000, () => {
   console.log('Server is Running...');
 });
