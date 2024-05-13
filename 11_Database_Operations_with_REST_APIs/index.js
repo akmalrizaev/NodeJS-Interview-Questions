@@ -1,3 +1,11 @@
+// Introduction to API
+// API - Application Programing Interface
+// It has "API endpoints" which are called by client requests.
+// API is a service / a program / an interface through which the client side developer
+// can commincate with the server.
+// The APIs used for data sharing are known as REST APIs.
+// REST - Representational State Transfer
+
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
