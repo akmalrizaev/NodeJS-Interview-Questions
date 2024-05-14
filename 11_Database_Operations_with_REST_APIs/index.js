@@ -49,6 +49,13 @@ app.post('/postdata', (req, res) => {
   });
 });
 
+// Deleting Records with API
+app.delete('/deleteData', (req, res) => {
+  pool.execute('delete from products where id=5', (error, rsh) => {
+    res.status(200).send(rsh);
+  });
+});
+
 const server = app.listen(3000, () => {
   console.log('Server is Running...');
 });
