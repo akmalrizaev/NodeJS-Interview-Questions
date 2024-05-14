@@ -7,70 +7,10 @@
 // REST - Representational State Transfer
 
 const express = require('express');
+const router = require('./routes/products');
 const app = express();
-const mysql = require('mysql');
 
-const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '12345678',
-  database: 'nodemysql',
-  port: 3306,
-  multipleStatements: true,
-});
-
-app.get('/getData', (req, res) => {
-  pool.execute('select * from products', (error, data) => {
-    if (error) {
-      res.status(500).send(error);
-    } else {
-      res.status(200).send(data);
-    }
-  });
-});
-
-// Inserting Data with POST Request
-app.post('/postdata', (req, res) => {
-  pool.getConnection((err, connection) => {
-    if (err) {
-      res.send(err.sqlMessage).status(500);
-    } else {
-      pool.execute(
-        'insert into products(id, productname, price) values(5, "New Product"',
-        (error, data) => {
-          if (error) {
-            res.send(error).status(500);
-          } else {
-            res.send(data).status(201);
-          }
-        }
-      );
-    }
-  });
-});
-
-// Deleting Records with API
-app.delete('/deleteData', (req, res) => {
-  pool.execute('delete from products where id=5', (error, rsh) => {
-    res.status(200).send(rsh);
-  });
-});
-
-// Updating database with PUT
-app.put('/putData', (req, res) => {
-  pool.getConnection((err, connection) => {
-    if (err) {
-      res.send(err.sqlMessage);
-    } else {
-      pool.execute(
-        'update products set productname="Pineapple" price=20 where id=1',
-        (error, rshObj) => {
-          res.send(rshObj).status(200);
-        }
-      );
-    }
-  });
-});
+app.use('/', router);
 
 const server = app.listen(3000, () => {
   console.log('Server is Running...');
