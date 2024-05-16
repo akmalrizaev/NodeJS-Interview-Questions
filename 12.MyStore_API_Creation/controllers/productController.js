@@ -1,3 +1,3 @@
 exports.renderProducts = (req, res) => {
-  res.send('Welcome to Home Route');
+  res.render('home');
 };
