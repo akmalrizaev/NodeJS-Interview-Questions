@@ -34,3 +34,7 @@ const products = [
 exports.renderProducts = (req, res) => {
   res.render('home', { products: products });
 };
+
+exports.renderAddProduct = (req, res) => {
+  res.send('Add Product Route!');
+};
