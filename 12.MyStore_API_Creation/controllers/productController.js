@@ -36,5 +36,5 @@ exports.renderProducts = (req, res) => {
 };
 
 exports.renderAddProduct = (req, res) => {
-  res.send('Add Product Route!');
+  res.render('add-product');
 };
