@@ -40,5 +40,7 @@ exports.renderAddProduct = (req, res) => {
 };
 
 exports.renderEditProduct = (req, res) => {
-  res.render('edit-product');
+  res.render('edit-product', {
+    product: products[--req.params.id],
+  });
 };
