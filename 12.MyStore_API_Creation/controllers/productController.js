@@ -43,6 +43,16 @@ exports.renderAddProduct = (req, res) => {
   res.render('add-product');
 };
 
+exports.postAddProduct = (req, res) => {
+  const { productname, price, image } = req.body;
+
+  const products = new Products(null, productname, price, image);
+
+  products.postData().then(() => {
+    res.redirect('/');
+  });
+};
+
 exports.renderEditProduct = (req, res) => {
   res.render('edit-product', {
     product: products[--req.params.id],
