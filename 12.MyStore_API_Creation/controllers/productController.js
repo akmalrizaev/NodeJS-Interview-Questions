@@ -54,7 +54,20 @@ exports.postAddProduct = (req, res) => {
 };
 
 exports.renderEditProduct = (req, res) => {
-  res.render('edit-product', {
-    product: products[--req.params.id],
+  Products.fetchProductById(req.params.id).then(
+    ([[productData], fieldData]) => {
+      res.render('edit-product', {
+        product: productData,
+      });
+    }
+  );
+};
+
+exports.editProduct = (req, res) => {
+  const { productname, price, image } = req.body;
+  const id = req.params.id;
+  const products = new Products(id, productname, price, image);
+  products.editData().then(() => {
+    res.redirect('/');
   });
 };
