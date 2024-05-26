@@ -15,6 +15,10 @@ module.exports = class Products {
     return pool.execute('select * from products where id=?', [id]);
   }
 
+  static deleteProductById(id) {
+    return pool.execute('delete from products where id=?', [id]);
+  }
+
   postData() {
     return pool.execute(
       'insert into products(productname, price, img) values(?,?,?)',
