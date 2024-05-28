@@ -2,7 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.setHeader('Set-Cookie', 'isLoggedIn=true'); // Send & create the cookie in the browser
+  // Send & create the cookie in the browser
+
+  //   res.setHeader('Set-Cookie', 'isLoggedIn=true');
+
+  res.cookie('isLoggedIn', 'true');
+
   res.send('Cookie Sent');
 });
 
