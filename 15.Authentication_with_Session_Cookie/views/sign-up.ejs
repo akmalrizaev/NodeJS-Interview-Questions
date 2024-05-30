@@ -25,17 +25,18 @@
 					<div class="col-12 mt-2 mb-3">
 						<label class="form-label fs-4">Username <span
 								class="fs-6 text-secondary fst-italic">(Email)</span></label>
-						<input type="text" name="username" class="form-control" />
+						<input type="text" name="username" class="form-control" placeholder="name@example.com" />
 					</div>
 				</div>
 
 				<div class="row">
 					<label class="form-label fs-4">Password</label>
 					<div class="col-10 mt-2 mb-3">
-						<input type="password" name="password" class="form-control" placeholder="Password" />
+						<input type="password" name="password" class="form-control" placeholder="Password"
+							id="passwordInp" />
 					</div>
 					<div class="mt-2 mb-3 col-2 btn">
-						<i class="bi bi-eye-slash"></i>
+						<i class="bi bi-eye-slash" name="passwordHidden" onclick="toggleDisplay(this)"></i>
 					</div>
 				</div>
 				<div class="row">
@@ -43,10 +44,10 @@
 					<label class="form-label fs-4">Confirm Password</label>
 					<div class="my-3 mb-3 mt-2 col-10">
 						<input type="password" name="confirmPassword" class="form-control"
-							placeholder="Confirm Password" />
+							placeholder="Confirm Password" id="confirmPasswordInp" />
 					</div>
 					<div class="mt-2 mb-3 col-2 btn">
-						<i class="bi bi-eye-slash"></i>
+						<i class="bi bi-eye-slash" name="confirmPasswordHidden" onclick="toggleDisplay(this)"></i>
 					</div>
 				</div>
 			</div>
@@ -55,6 +56,50 @@
 
 		</form>
 	</div>
+
+	<script>
+		let passwordInp = document.getElementById("passwordInp");
+		let confirmPasswordInp = document.getElementById("confirmPasswordInp");
+
+		const toggleDisplay = (e) => {
+			let selectedToggle = e.getAttribute("name");
+
+			switch (selectedToggle) {
+				case "passwordHidden":
+					passwordInp.type = "text";
+					e.className = "bi bi-eye";
+					e.setAttribute("name", "passwordVisible");
+
+					break;
+
+				case "passwordVisible":
+					passwordInp.type = "password";
+					e.className = "bi bi-eye-slash";
+					e.setAttribute("name", "passwordHidden");
+
+					break;
+
+				case "confirmPasswordHidden":
+					confirmPasswordInp.type = "text";
+					e.className = "bi bi-eye";
+					e.setAttribute("name", "ConfirmPasswordVisible");
+
+					break;
+
+				case "ConfirmPasswordVisible":
+					confirmPasswordInp.type = "password";
+					e.className = "bi bi-eye-slash";
+					e.setAttribute("name", "ConfirmPasswordHidden");
+
+					break;
+
+				default:
+
+					break;
+			}
+
+		}
+	</script>
 </body>
 
 </html>
