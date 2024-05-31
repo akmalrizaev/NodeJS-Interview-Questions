@@ -13,3 +13,7 @@ exports.registerUser = (req, res) => {
     res.redirect('/');
   });
 };
+
+exports.renderLogin = (req, res) => {
+  res.render('login');
+};
