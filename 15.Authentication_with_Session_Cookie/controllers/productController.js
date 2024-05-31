@@ -34,6 +34,13 @@ const products = [
 ];
 
 exports.renderProducts = (req, res) => {
+  // Reading Cookie
+  // const cookie = req.get('Cookie').split(';')[0].split('=')[1];
+  // console.log(cookie);
+
+  const cookie = req.cookies;
+  console.log(cookie);
+
   Products.fetchProducts().then(([rows, fieldData]) => {
     res.render('home', { products: rows });
   });
