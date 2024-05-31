@@ -13,4 +13,8 @@ module.exports = class Users {
       this.password,
     ]);
   }
+
+  static fetchUserByUsername(userName) {
+    return pool.execute('select * from users where userName=?', [userName]);
+  }
 };

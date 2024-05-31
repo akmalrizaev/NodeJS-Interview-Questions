@@ -4,6 +4,7 @@ const {
   renderSignUp,
   registerUser,
   renderLogin,
+  validateLogin,
 } = require('../controllers/userAuthController');
 const router = express.Router();
 
@@ -14,5 +15,7 @@ router.get('/sign-up', renderSignUp);
 router.post('/sign-up', registerUser);
 
 router.get('/login', renderLogin);
+
+router.post('/login', validateLogin);
 
 module.exports = router;
