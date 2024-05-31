@@ -1,4 +1,4 @@
-const { pool } = require('../utils/database');
+const pool = require('../utils/database');
 
 module.exports = class Users {
   constructor(id, userName, password) {
