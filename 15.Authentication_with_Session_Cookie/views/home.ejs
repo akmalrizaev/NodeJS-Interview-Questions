@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<%- include('./includes/navbar.ejs') %>
+	<%- include('./includes/navbar.ejs'), {isLoggedIn:isLoggedIn} %>
 	<div>
 		<div class="pt-3 card-container">
 			<% if(products.length > 0) { %>
@@ -27,6 +27,8 @@
 						<h3 class="card-title"> <%= product.productname %> </h3>
 						<h4 class="card-title fw-light"> <%= product.price %> </h4>
 					</div>
+					<% if (isLoggedIn==="true") { %>
+
 					<div>
 						<a href="/edit-product/<%= product.id %>" class="btn btn-outline-dark mx-1 mt-4 edit-buttons">
 							<i class="bi bi-pencil-fill"></i>
@@ -35,6 +37,7 @@
 							<i class="bi bi-trash-fill"></i>
 						</a>
 					</div>
+					<% } %>
 
 				</div>
 			</div>

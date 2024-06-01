@@ -5,17 +5,31 @@
 				<li class="nav-item">
 					<a class="nav-link text-light fs-4 px-3" href="/">Home</a>
 				</li>
+
+				<% if (isLoggedIn==="true") { %>
+
 				<li class="nav-item">
 					<a class="nav-link text-light fs-4 px-3" href="/add-product">Add Product</a>
 				</li>
+				<% } %>
+
 			</ul>
 			<ul class="navbar-nav">
+
+				<% if (isLoggedIn==="true") { %>
+				<li class="nav-item">
+					<a class="nav-link text-light fs-4 px-3" href="/">Logout</a>
+				</li>
+
+				<% } else { %>
+
 				<li class="nav-item">
 					<a class="nav-link text-light fs-4 px-3" href="/sign-up">Sign Up</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link text-light fs-4 px-3" href="/login">Login</a>
 				</li>
+				<% } %>
 			</ul>
 		</div>
 	</div>

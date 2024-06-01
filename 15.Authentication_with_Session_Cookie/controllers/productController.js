@@ -42,7 +42,7 @@ exports.renderProducts = (req, res) => {
   console.log(cookie);
 
   Products.fetchProducts().then(([rows, fieldData]) => {
-    res.render('home', { products: rows });
+    res.render('home', { products: rows, isLoggedIn: cookie.isLoggedIn });
   });
 };
 
