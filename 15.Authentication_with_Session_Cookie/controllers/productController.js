@@ -39,7 +39,7 @@ exports.renderProducts = (req, res) => {
   // console.log(cookie);
 
   const cookie = req.cookies;
-  console.log(cookie);
+  // console.log(cookie);
 
   Products.fetchProducts().then(([rows, fieldData]) => {
     res.render('home', { products: rows, isLoggedIn: cookie.isLoggedIn });
