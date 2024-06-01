@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
+
 const home = require('./routes/home');
 const addProduct = require('./routes/addProduct');
 const editProduct = require('./routes/editProduct');
@@ -9,6 +11,18 @@ const userAuth = require('./routes/userAuth');
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
+
+app.use(
+  session({
+    secret: 'It is a secret',
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.get('/trySession', (req, res) => {
+  console.log(req.session.id);
+});
 
 app.use('/', home);
 app.use('/add-product', addProduct);
