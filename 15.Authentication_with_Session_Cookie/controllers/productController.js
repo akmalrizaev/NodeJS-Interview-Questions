@@ -38,16 +38,19 @@ exports.renderProducts = (req, res) => {
   // const cookie = req.get('Cookie').split(';')[0].split('=')[1];
   // console.log(cookie);
 
-  const cookie = req.cookies;
+  // const cookie = req.cookies;
   // console.log(cookie);
 
+  const cookie = req.session.isLoggedIn;
+
   Products.fetchProducts().then(([rows, fieldData]) => {
-    res.render('home', { products: rows, isLoggedIn: cookie.isLoggedIn });
+    res.render('home', { products: rows, isLoggedIn: cookie });
   });
 };
 
 exports.renderAddProduct = (req, res) => {
-  res.render('add-product');
+  const cookie = req.session.isLoggedIn;
+  res.render('add-product', { isLoggedIn: cookie });
 };
 
 exports.postAddProduct = (req, res) => {
@@ -61,10 +64,12 @@ exports.postAddProduct = (req, res) => {
 };
 
 exports.renderEditProduct = (req, res) => {
+  const cookie = req.session.isLoggedIn;
   Products.fetchProductById(req.params.id).then(
     ([[productData], fieldData]) => {
       res.render('edit-product', {
         product: productData,
+        isLoggedIn: cookie,
       });
     }
   );

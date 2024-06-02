@@ -1,7 +1,8 @@
 const Users = require('../models/users');
 
 exports.renderSignUp = (req, res) => {
-  const cookie = req.cookies;
+  // const cookie = req.cookies;
+  const cookie = req.session.isLoggedIn;
 
   res.render('sign-up', { isLoggedIn: cookie.isLoggedIn });
 };
@@ -17,9 +18,11 @@ exports.registerUser = (req, res) => {
 };
 
 exports.renderLogin = (req, res) => {
-  const cookie = req.cookies;
+  // const cookie = req.cookies;
+  const cookie = req.session.isLoggedIn;
 
-  res.render('login', { isLoggedIn: cookie.isLoggedIn });
+  // res.render('login', { isLoggedIn: cookie.isLoggedIn });
+  res.render('login', { isLoggedIn: cookie });
 };
 
 exports.validateLogin = (req, res) => {
@@ -45,6 +48,7 @@ exports.validateLogin = (req, res) => {
 };
 
 exports.logout = (req, res) => {
-  res.cookie('isLoggedIn', 'false');
+  // res.cookie('isLoggedIn', 'false');
+  req.session.isLoggedIn = 'false';
   res.redirect('/');
 };
