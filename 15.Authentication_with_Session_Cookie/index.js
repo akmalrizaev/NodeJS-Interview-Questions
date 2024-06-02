@@ -21,7 +21,8 @@ app.use(
 );
 
 app.get('/trySession', (req, res) => {
-  console.log(req.session.id);
+  // console.log(req.session.id);
+  res.send(req.session.isLoggedIn);
 });
 
 app.use('/', home);

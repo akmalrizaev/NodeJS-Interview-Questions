@@ -28,14 +28,17 @@ exports.validateLogin = (req, res) => {
   Users.fetchUserByUsername(userName).then(([[userCredentials], tInfo]) => {
     if (userCredentials) {
       if (userCredentials.password === password) {
-        res.cookie('isLoggedIn', 'true');
+        // res.cookie('isLoggedIn', 'true');
+        req.session.isLoggedIn = 'true';
         res.redirect('/');
       } else {
-        res.cookie('isLoggedIn', 'invalidPassword');
+        // res.cookie('isLoggedIn', 'invalidPassword');
+        req.session.isLoggedIn = 'invalidPassword';
         res.redirect('/login');
       }
     } else {
-      res.cookie('isLoggedIn', 'invalidUserName');
+      // res.cookie('isLoggedIn', 'invalidUserName');
+      req.session.isLoggedIn = 'invalidUsername';
       res.redirect('/login');
     }
   });
