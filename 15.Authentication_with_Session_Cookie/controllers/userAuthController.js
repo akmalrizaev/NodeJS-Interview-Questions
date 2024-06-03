@@ -49,6 +49,8 @@ exports.validateLogin = (req, res) => {
 
 exports.logout = (req, res) => {
   // res.cookie('isLoggedIn', 'false');
-  req.session.isLoggedIn = 'false';
+  // req.session.isLoggedIn = 'false';
+
+  req.session.destroy(req.session.id);
   res.redirect('/');
 };
