@@ -37,7 +37,16 @@ app.use(
 
 app.get('/tryJWT', (req, res) => {
   const token = JWT.sign({ isLoggedIn: 'true' }, 'it is a secret');
+
+  res.cookie('token', token);
   res.send(token);
+});
+
+app.get('/verifyJWT', (req, res) => {
+  const token = req.get('cookie').split('=')[1].split(';')[0];
+  console.log(token);
+  const decodedToken = JWT.verify(token, 'it is a secret');
+  console.log(decodedToken);
 });
 
 app.use('/', home);
