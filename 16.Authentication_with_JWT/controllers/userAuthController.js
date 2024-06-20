@@ -1,4 +1,6 @@
 const Users = require('../models/users');
+const JWT = require('jsonwebtoken');
+const { tokenSignature } = require('../utils/globals');
 
 exports.renderSignUp = (req, res) => {
   // const cookie = req.cookies;
@@ -32,16 +34,18 @@ exports.validateLogin = (req, res) => {
     if (userCredentials) {
       if (userCredentials.password === password) {
         // res.cookie('isLoggedIn', 'true');
-        req.session.isLoggedIn = 'true';
+        const token = JWT.sign({ userName }, tokenSignature);
+        // req.session.isLoggedIn = 'true';
+        req.session.token = token;
         res.redirect('/');
       } else {
         // res.cookie('isLoggedIn', 'invalidPassword');
-        req.session.isLoggedIn = 'invalidPassword';
+        // req.session.isLoggedIn = 'invalidPassword';
         res.redirect('/login');
       }
     } else {
       // res.cookie('isLoggedIn', 'invalidUserName');
-      req.session.isLoggedIn = 'invalidUsername';
+      // req.session.isLoggedIn = 'invalidUsername';
       res.redirect('/login');
     }
   });

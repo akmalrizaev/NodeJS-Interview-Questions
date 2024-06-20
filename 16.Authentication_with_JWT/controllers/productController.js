@@ -41,7 +41,8 @@ exports.renderProducts = (req, res) => {
   // const cookie = req.cookies;
   // console.log(cookie);
 
-  const cookie = req.session.isLoggedIn;
+  // const cookie = req.session.isLoggedIn;
+  const cookie = req.session.token;
 
   Products.fetchProducts().then(([rows, fieldData]) => {
     res.render('home', { products: rows, isLoggedIn: cookie });
