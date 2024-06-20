@@ -6,7 +6,7 @@ exports.renderSignUp = (req, res) => {
   // const cookie = req.cookies;
   const cookie = req.session.isLoggedIn;
 
-  res.render('sign-up', { isLoggedIn: cookie.isLoggedIn });
+  res.render('sign-up', { isLoggedIn: global.isLoggedIn });
 };
 
 exports.registerUser = (req, res) => {
@@ -24,7 +24,7 @@ exports.renderLogin = (req, res) => {
   const cookie = req.session.isLoggedIn;
 
   // res.render('login', { isLoggedIn: cookie.isLoggedIn });
-  res.render('login', { isLoggedIn: cookie });
+  res.render('login', { isLoggedIn: global.isLoggedIn });
 };
 
 exports.validateLogin = (req, res) => {

@@ -42,16 +42,16 @@ exports.renderProducts = (req, res) => {
   // console.log(cookie);
 
   // const cookie = req.session.isLoggedIn;
-  const cookie = req.session.token;
+  // const cookie = req.session.token;
 
   Products.fetchProducts().then(([rows, fieldData]) => {
-    res.render('home', { products: rows, isLoggedIn: cookie });
+    res.render('home', { products: rows, isLoggedIn: global.isLoggedIn });
   });
 };
 
 exports.renderAddProduct = (req, res) => {
   const cookie = req.session.isLoggedIn;
-  res.render('add-product', { isLoggedIn: cookie });
+  res.render('add-product', { isLoggedIn: global.isLoggedIn });
 };
 
 exports.postAddProduct = (req, res) => {
@@ -70,7 +70,7 @@ exports.renderEditProduct = (req, res) => {
     ([[productData], fieldData]) => {
       res.render('edit-product', {
         product: productData,
-        isLoggedIn: cookie,
+        isLoggedIn: global.isLoggedIn,
       });
     }
   );
