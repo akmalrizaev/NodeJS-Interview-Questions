@@ -7,6 +7,7 @@ const {
   validateLogin,
   logout,
 } = require('../controllers/userAuthController');
+const { auth } = require('../middlewares/auth');
 const router = express.Router();
 
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -19,6 +20,6 @@ router.get('/login', renderLogin);
 
 router.post('/login', validateLogin);
 
-router.get('/logout', logout);
+router.get('/logout', auth, logout);
 
 module.exports = router;

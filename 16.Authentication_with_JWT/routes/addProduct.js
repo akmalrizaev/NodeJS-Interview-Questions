@@ -4,12 +4,13 @@ const {
   renderAddProduct,
   postAddProduct,
 } = require('../controllers/productController');
+const { auth } = require('../middlewares/auth');
 const router = express.Router();
 
 router.use(bodyParser.urlencoded());
 
-router.get('/', renderAddProduct);
+router.get('/', auth, renderAddProduct);
 
-router.post('/', postAddProduct);
+router.post('/', auth, postAddProduct);
 
 module.exports = router;
