@@ -3,6 +3,7 @@ const app = express();
 const session = require('express-session');
 const MysqlStore = require('express-mysql-session')(session);
 const JWT = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const home = require('./routes/home');
 const addProduct = require('./routes/addProduct');
@@ -35,18 +36,10 @@ app.use(
   })
 );
 
-app.get('/tryJWT', (req, res) => {
-  const token = JWT.sign({ isLoggedIn: 'true' }, 'it is a secret');
-
-  res.cookie('token', token);
-  res.send(token);
-});
-
-app.get('/verifyJWT', (req, res) => {
-  const token = req.get('cookie').split('=')[1].split(';')[0];
-  console.log(token);
-  const decodedToken = JWT.verify(token, 'it is a secret');
-  console.log(decodedToken);
+app.get('/tryBcrypt', async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  // const salt = bcrypt.genSaltSync(10);
+  res.send(salt);
 });
 
 app.use('/', home);
