@@ -37,9 +37,13 @@ app.use(
 );
 
 app.get('/tryBcrypt', async (req, res) => {
-  const salt = await bcrypt.genSalt(10);
+  // const salt = await bcrypt.genSalt(10);
   // const salt = bcrypt.genSaltSync(10);
-  res.send(salt);
+
+  const password = 'password';
+  const hashedPassword = await bcrypt.hash(password, 10);
+  // const hashedPassword = bcrypt.hashSync(password, salt);
+  res.send(hashedPassword);
 });
 
 app.use('/', home);
