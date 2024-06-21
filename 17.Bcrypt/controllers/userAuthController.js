@@ -35,7 +35,9 @@ exports.validateLogin = (req, res) => {
 
   Users.fetchUserByUsername(userName).then(([[userCredentials], tInfo]) => {
     if (userCredentials) {
-      if (userCredentials.password === password) {
+      const isMatch = bcrypt.compare(userCredentials.password, password);
+
+      if (isMatch) {
         // res.cookie('isLoggedIn', 'true');
         const token = JWT.sign({ userName }, tokenSignature);
         // req.session.isLoggedIn = 'true';
