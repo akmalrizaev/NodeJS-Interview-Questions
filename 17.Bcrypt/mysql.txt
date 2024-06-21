@@ -1,0 +1,4 @@
+mysql> create database mystore;
+mysql> use mystore;
+mysql> create table products (id int auto_increment, productname varchar(50), price int, img varchar(50), primary key(id) );
+mysql> show tables;
