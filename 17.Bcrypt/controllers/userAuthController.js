@@ -1,6 +1,7 @@
 const Users = require('../models/users');
 const JWT = require('jsonwebtoken');
 const { tokenSignature } = require('../utils/globals');
+const bcrypt = require('bcrypt');
 
 exports.renderSignUp = (req, res) => {
   // const cookie = req.cookies;
@@ -9,10 +10,12 @@ exports.renderSignUp = (req, res) => {
   res.render('sign-up', { isLoggedIn: global.isLoggedIn });
 };
 
-exports.registerUser = (req, res) => {
+exports.registerUser = async (req, res) => {
   const { userName, password, confirmPassword } = req.body;
 
-  const users = new Users(null, userName, password);
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const users = new Users(null, userName, hashedPassword);
 
   users.insertUser().then(() => {
     res.redirect('/');

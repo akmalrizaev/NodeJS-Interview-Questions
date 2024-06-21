@@ -43,6 +43,8 @@ app.get('/tryBcrypt', async (req, res) => {
   const password = 'password';
   const hashedPassword = await bcrypt.hash(password, 10);
   // const hashedPassword = bcrypt.hashSync(password, salt);
+
+  console.log(await bcrypt.compare(password, hashedPassword));
   res.send(hashedPassword);
 });
 
