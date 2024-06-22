@@ -4,6 +4,7 @@ const session = require('express-session');
 const MysqlStore = require('express-mysql-session')(session);
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const multer = require('multer');
 
 const home = require('./routes/home');
 const addProduct = require('./routes/addProduct');
@@ -47,6 +48,8 @@ app.get('/tryBcrypt', async (req, res) => {
   console.log(await bcrypt.compare(password, hashedPassword));
   res.send(hashedPassword);
 });
+
+app.use(multer().single(image));
 
 app.use('/', home);
 app.use('/add-product', addProduct);
