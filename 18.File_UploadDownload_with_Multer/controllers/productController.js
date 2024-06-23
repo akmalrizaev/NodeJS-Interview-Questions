@@ -55,7 +55,8 @@ exports.renderAddProduct = (req, res) => {
 };
 
 exports.postAddProduct = (req, res) => {
-  const { productname, price, image } = req.body;
+  const { productname, price } = req.body;
+  const image = req.file.destination + '/' + req.file.filename;
 
   const products = new Products(null, productname, price, image);
 
@@ -79,8 +80,11 @@ exports.renderEditProduct = (req, res) => {
 };
 
 exports.editProduct = (req, res) => {
-  const { productname, price, image } = req.body;
+  // const { productname, price, image } = req.body;
+  const { productname, price } = req.body;
+  const image = req.file.destination + '/' + req.file.filename;
   const id = req.params.id;
+
   const products = new Products(id, productname, price, image);
   products.editData().then(() => {
     res.redirect('/');
