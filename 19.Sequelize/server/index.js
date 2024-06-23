@@ -11,6 +11,7 @@
 const { sequelize } = require('./db.js');
 const Product = require('./models/product');
 const createProd = require('./product-crud/createProd.js');
+const readProd = require('./product-crud/readProd.js');
 
 async function main() {
   try {
@@ -21,6 +22,8 @@ async function main() {
     console.log('Table created');
 
     await createProd();
+
+    await readProd();
   } catch (error) {
     console.error(error);
   } finally {
