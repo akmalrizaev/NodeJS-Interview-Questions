@@ -49,7 +49,16 @@ app.get('/tryBcrypt', async (req, res) => {
   res.send(hashedPassword);
 });
 
-app.use(multer().single(image));
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './images');
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + file.originalname);
+  },
+});
+
+app.use(multer({ storage: storage }).single('image'));
 
 app.use('/', home);
 app.use('/add-product', addProduct);
