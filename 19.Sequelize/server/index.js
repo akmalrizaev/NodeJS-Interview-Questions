@@ -10,6 +10,7 @@
 
 const { sequelize } = require('./db.js');
 const Product = require('./models/product');
+const createProd = require('./product-crud/createProd.js');
 
 async function main() {
   try {
@@ -18,6 +19,8 @@ async function main() {
 
     await Product.sync();
     console.log('Table created');
+
+    await createProd();
   } catch (error) {
     console.error(error);
   } finally {
