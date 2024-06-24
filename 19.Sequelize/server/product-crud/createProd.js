@@ -8,11 +8,12 @@ async function createProd() {
       category: 'Electronics',
     });
   } catch (err) {
-    // console.error(err);
-    if (err.name === 'SequelizeUniqueConstraintError') {
-      console.error('Unique constraint error', err.errors[0].message);
-      return;
-    }
+    console.error(err);
+
+    // if (err.name === 'SequelizeUniqueConstraintError') {
+    //   console.error('Unique constraint error', err.errors[0].message);
+    //   return;
+    // }
   }
 }
 

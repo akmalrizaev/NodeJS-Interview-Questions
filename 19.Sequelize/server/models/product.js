@@ -29,6 +29,11 @@ const Product = sequelize.define('product', {
       norNull: {
         msg: 'Product name is required',
       },
+      //   len: [3,20],
+      len: {
+        args: [3, 20],
+        msg: 'Product name must be between 3 to 20 characters',
+      },
     },
   },
   price: {
