@@ -19,6 +19,9 @@ const Product = sequelize.define('product', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: {
+      msg: 'Name already taken',
+    },
     validate: {
       notEmpty: {
         msg: 'Please provide name',
