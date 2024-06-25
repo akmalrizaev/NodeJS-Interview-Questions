@@ -38,6 +38,17 @@ const Product = sequelize.define('product', {
   },
   price: {
     type: DataTypes.DOUBLE,
+    allowNull: false,
+    validate: {
+      min: {
+        args: 1,
+        msg: 'Price must be greater than or equal to 1',
+      },
+      max: {
+        args: 100000,
+        msg: 'Price cannot exceed 100K',
+      },
+    },
   },
   category: {
     type: DataTypes.STRING,
