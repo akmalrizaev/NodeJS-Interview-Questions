@@ -23,13 +23,13 @@ async function main() {
     await Product.sync();
     console.log('Table created');
 
-    // await createProd();
+    await createProd();
 
     // await readProd();
 
     // await updateProd();
 
-    await deleteProd();
+    // await deleteProd();
   } catch (error) {
     console.error(error);
   } finally {

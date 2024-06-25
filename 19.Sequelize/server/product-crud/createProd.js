@@ -3,8 +3,8 @@ const Product = require('../models/product');
 async function createProd() {
   try {
     const newProd = await Product.create({
-      name: 'Product 1',
-      price: 30,
+      name: 'Product 2',
+      price: 0,
       category: 'Electronics',
     });
   } catch (err) {

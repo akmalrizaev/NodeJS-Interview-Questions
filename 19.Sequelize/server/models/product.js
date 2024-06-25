@@ -40,9 +40,13 @@ const Product = sequelize.define('product', {
     type: DataTypes.DOUBLE,
     allowNull: false,
     validate: {
-      min: {
-        args: 1,
-        msg: 'Price must be greater than or equal to 1',
+      notNull: {
+        msg: 'Price is required',
+      },
+      validatePrice(value) {
+        if (value <= 0 || value % 5 !== 0) {
+          throw new Error('price must be a non-zero, positive multiple of 5');
+        }
       },
       max: {
         args: 100000,
