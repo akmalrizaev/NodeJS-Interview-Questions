@@ -10,6 +10,7 @@
 
 const { sequelize } = require('./db.js');
 const Product = require('./models/product');
+const User = require('./models/user.js');
 const createProd = require('./product-crud/createProd.js');
 const deleteProd = require('./product-crud/deleteProd.js');
 const readProd = require('./product-crud/readProd.js');
@@ -19,6 +20,14 @@ async function main() {
   try {
     await sequelize.authenticate();
     console.log('Connection established');
+
+    await User.sync();
+    console.log('Table Users created');
+    const newUser = await User.create({
+      email: 'example123gmail.com',
+      password: 'examp2@',
+    });
+    console.log('User added:', JSON.stringify(newUser, null, 2));
 
     await Product.sync();
     console.log('Table created');
