@@ -14,6 +14,13 @@ async function createProd() {
     //   console.error('Unique constraint error', err.errors[0].message);
     //   return;
     // }
+
+    if (err.name === 'SequelizeValidationError') {
+      err.errors.forEach((errItem) => {
+        console.log('Error: ', errItem.message);
+        console.log('Got value: ', errItem.value);
+      });
+    }
   }
 }
 
