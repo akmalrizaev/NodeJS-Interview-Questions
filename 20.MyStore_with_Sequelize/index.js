@@ -4,6 +4,7 @@ const session = require('express-session');
 const MysqlStore = require('express-mysql-session')(session);
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const sequelize = require('./utils/database');
 
 const home = require('./routes/home');
 const addProduct = require('./routes/addProduct');
@@ -56,6 +57,15 @@ app.use('/tryCookie', tryCookie);
 app.use('/', userAuth);
 
 app.use(express.static(__dirname));
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Database connected');
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 const server = app.listen(3000, () => {
   console.log('Server Running...');
