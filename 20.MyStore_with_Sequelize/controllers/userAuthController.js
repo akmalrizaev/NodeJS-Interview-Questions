@@ -13,13 +13,17 @@ exports.renderSignUp = (req, res) => {
 exports.registerUser = async (req, res) => {
   const { userName, password, confirmPassword } = req.body;
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  const users = new Users(null, userName, hashedPassword);
+    // const users = new Users(null, userName, hashedPassword);
+    await Users.insertUser({ userName, password: hashedPassword });
 
-  users.insertUser().then(() => {
     res.redirect('/');
-  });
+  } catch (err) {
+    console.error(err);
+    res.status(500).redirect('/error');
+  }
 };
 
 exports.renderLogin = (req, res) => {
