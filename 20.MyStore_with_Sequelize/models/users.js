@@ -1,20 +1,46 @@
-const pool = require('../utils/database');
+// const pool = require('../utils/database');
 
-module.exports = class Users {
-  constructor(id, userName, password) {
-    this.id = id;
-    this.userName = userName;
-    this.password = password;
-  }
+// module.exports = class Users {
+//   constructor(id, userName, password) {
+//     this.id = id;
+//     this.userName = userName;
+//     this.password = password;
+//   }
 
-  insertUser() {
-    return pool.execute('insert into users(userName, password) values(?,?)', [
-      this.userName,
-      this.password,
-    ]);
-  }
+//   insertUser() {
+//     return pool.execute('insert into users(userName, password) values(?,?)', [
+//       this.userName,
+//       this.password,
+//     ]);
+//   }
 
-  static fetchUserByUsername(userName) {
-    return pool.execute('select * from users where userName=?', [userName]);
-  }
-};
+//   static fetchUserByUsername(userName) {
+//     return pool.execute('select * from users where userName=?', [userName]);
+//   }
+// };
+
+const { DataTypes } = require('sequelize');
+const sequelize = require('../utils/database');
+
+const User = sequelize.define(
+  'user',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  { tableName: 'users', timestamps: false }
+);
+
+module.exports = User;
