@@ -1,4 +1,4 @@
-const Products = require('../models/product');
+const Product = require('../models/product');
 
 const products = [
   {
@@ -33,20 +33,15 @@ const products = [
   },
 ];
 
-exports.renderProducts = (req, res) => {
-  // Reading Cookie
-  // const cookie = req.get('Cookie').split(';')[0].split('=')[1];
-  // console.log(cookie);
+exports.renderProducts = async (req, res) => {
+  try {
+    const products = await Product.findAll();
 
-  // const cookie = req.cookies;
-  // console.log(cookie);
-
-  // const cookie = req.session.isLoggedIn;
-  // const cookie = req.session.token;
-
-  Products.fetchProducts().then(([rows, fieldData]) => {
-    res.render('home', { products: rows, isLoggedIn: global.isLoggedIn });
-  });
+    res.render('home', { products: products, isLoggedIn: global.isLoggedIn });
+  } catch (err) {
+    console.error(err);
+    res.status(500).redirect('/error');
+  }
 };
 
 exports.renderAddProduct = (req, res) => {
@@ -54,39 +49,83 @@ exports.renderAddProduct = (req, res) => {
   res.render('add-product', { isLoggedIn: global.isLoggedIn });
 };
 
-exports.postAddProduct = (req, res) => {
-  const { productname, price, image } = req.body;
+exports.postAddProduct = async (req, res) => {
+  try {
+    const { productname, price } = req.body;
+    const image = req.file.destination + '/' + req.file.filename;
 
-  const products = new Products(null, productname, price, image);
-
-  products.postData().then(() => {
+    // const products = new Products(null, productname, price, image);
+    const newProduct = await Product.create({
+      productname,
+      price,
+      image,
+    });
+    console.log('Product added successfully: ', newProduct);
     res.redirect('/');
-  });
+  } catch (err) {
+    console.error(err);
+    res.status(500).redirect('/error');
+  }
+
+  // products.postData().then(() => {
+  //   res.redirect('/');
+  // });
 };
 
-exports.renderEditProduct = (req, res) => {
-  const cookie = req.session.isLoggedIn;
-  Products.fetchProductById(req.params.id).then(
-    ([[productData], fieldData]) => {
-      res.render('edit-product', {
-        product: productData,
-        isLoggedIn: global.isLoggedIn,
-      });
+exports.renderEditProduct = async (req, res) => {
+  try {
+    const cookie = req.session.isLoggedIn;
+    const product = await Product.findByPk(req.params.id);
+
+    if (product) {
+      ([[productData], fieldData]) => {
+        res.render('edit-product', {
+          product: product,
+          isLoggedIn: global.isLoggedIn,
+        });
+      };
+    } else {
+      res.redirect('/');
     }
-  );
+  } catch (err) {
+    console.error(err);
+    res.status(500).redirect('/error');
+  }
 };
 
-exports.editProduct = (req, res) => {
-  const { productname, price, image } = req.body;
-  const id = req.params.id;
-  const products = new Products(id, productname, price, image);
-  products.editData().then(() => {
+exports.editProduct = async (req, res) => {
+  try {
+    const { productname, price } = req.body;
+    const image = req.file.destination + '/' + req.file.filename;
+    const id = req.params.id;
+    const product = await Product.findByPk(id);
+
+    if (!product) {
+      console.error('Product not found');
+      return res.status(404).send('Product not found');
+    }
+
+    product.productname = productname;
+    product.price = price;
+    product.image = image;
+
+    await product.save();
+    console.log('Product edited successfully');
     res.redirect('/');
-  });
+  } catch (err) {
+    console.error(err);
+    res.status(500).redirect('/error');
+  }
 };
 
-exports.deleteProduct = (req, res) => {
-  Products.deleteProductById(req.params.id).then(() => {
+exports.deleteProduct = async (req, res) => {
+  try {
+    await Product.destroy({ where: { id: req.params.id } });
+    console.log('Product deleted successfully');
+
     res.redirect('/');
-  });
+  } catch (err) {
+    console.error(err);
+    res.status(500).redirect('/error');
+  }
 };
