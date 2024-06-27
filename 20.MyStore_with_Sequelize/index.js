@@ -67,6 +67,8 @@ sequelize
     console.error(err);
   });
 
-const server = app.listen(3000, () => {
-  console.log('Server Running...');
+sequelize.sync().then(() => {
+  app.listen(3000, () => {
+    console.log('Server Running...');
+  });
 });
