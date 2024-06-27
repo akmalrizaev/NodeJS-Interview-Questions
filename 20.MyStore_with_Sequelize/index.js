@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const session = require('express-session');
-const MysqlStore = require('express-mysql-session')(session);
+// const MysqlStore = require('express-mysql-session')(session);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const JWT = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const sequelize = require('./utils/database');
@@ -13,17 +14,23 @@ const deleteProduct = require('./routes/deleteProduct');
 const tryCookie = require('./routes/tryCookie');
 const userAuth = require('./routes/userAuth');
 
-const options = {
-  connectionLimit: 10,
-  port: 3306,
-  host: 'localhost',
-  database: 'mystore',
-  user: 'root',
-  password: 'akmal',
-  createDatabaseTable: true,
-};
+// const options = {
+//   connectionLimit: 10,
+//   port: 3306,
+//   host: 'localhost',
+//   database: 'mystore',
+//   user: 'root',
+//   password: 'akmal',
+//   createDatabaseTable: true,
+// };
 
-const sessionStore = new MysqlStore(options);
+// const sessionStore = new MysqlStore(options);
+
+const sessionStore = new SequelizeStore({
+  db: sequelize,
+});
+
+sessionStore.sync();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
