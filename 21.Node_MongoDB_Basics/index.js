@@ -35,12 +35,22 @@ async function main() {
 
   //   const document = await collection.findOne({ title: 'Backend' });
 
-  //   const document = await collection.find().toArray();
+  //   const document = await collection.find({ title: 'Backend' }).toArray();
 
-  const document = await collection.find({ title: 'Backend' }).toArray();
+  const document = await collection.find().toArray();
 
   if (document) {
-    console.log(document);
+    // const res = await document.next();
+    // console.log(res);
+
+    // for await (const cursor of document) {
+    //   console.log(cursor);
+    //   const nextDoc = await document.next();
+    //   console.log("Next Document", nextDoc);
+    // }
+
+    const title = document.map((doc) => doc.title);
+    console.log(title);
   } else {
     console.log('Document not found');
   }
