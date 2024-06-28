@@ -14,20 +14,35 @@ async function main() {
   //     title: 'Frontend',
   //     technologies: ['HTML', 'CSS', 'JavaScript', 'React'],
   //   });
-  const insertData = await collection.insertMany([
-    {
-      title: 'Frontend',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'React'],
-    },
-    {
-      title: 'Backend',
-      technologies: ['Node.js', 'Python', 'MongoDB'],
-    },
-  ]);
-  if (insertData) {
-    console.log('Document Inserted');
+
+  //    insertData = await collection.insertMany([
+  //     {
+  //       title: 'Frontend',
+  //       technologies: ['HTML', 'CSS', 'JavaScript', 'React'],
+  //     },
+  //     {
+  //       title: 'Backend',
+  //       technologies: ['Node.js', 'Python', 'MongoDB'],
+  //     },
+  //   ]);
+  //   if (inseconstrtData) {
+  //     console.log('Document Inserted');
+  //   } else {
+  //     throw new Error('Something went wrong');
+  //   }
+
+  //   const document = await collection.findOne();
+
+  //   const document = await collection.findOne({ title: 'Backend' });
+
+  //   const document = await collection.find().toArray();
+
+  const document = await collection.find({ title: 'Backend' }).toArray();
+
+  if (document) {
+    console.log(document);
   } else {
-    throw new Error('Something went wrong');
+    console.log('Document not found');
   }
   return 'done';
 }
