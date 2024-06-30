@@ -23,13 +23,14 @@ const productSchema = new mongoose.Schema({
         validator: function (value) {
           return value > 0 && value % 5 === 0;
         },
-        message: 'Price must be a non-zero, positive multiple of 5',
+        message:
+          'Price must be a non-zero, positive multiple of 5, got {VALUE} as value',
       },
       {
         validator: function (value) {
           return value <= 100000;
         },
-        message: 'Price cannot exceed 100K',
+        message: 'Price cannot exceed 100K, got {VALUE} as value',
       },
     ],
   },
