@@ -13,7 +13,12 @@ const productSchema = new mongoose.Schema({
     minLength: [2, 'Characters limit not met'],
     maxLength: [15, 'Characters exceed the given length'],
   },
-  price: Number,
+  price: {
+    type: Number,
+    required: true,
+    min: [1, 'Price value should be at least 1'],
+    max: [2000, 'Price cannot exceed 2000'],
+  },
   category: String,
 });
 
