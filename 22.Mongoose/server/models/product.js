@@ -15,9 +15,23 @@ const productSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: true,
-    min: [1, 'Price value should be at least 1'],
-    max: [2000, 'Price cannot exceed 2000'],
+    required: [true, 'Price cannot be empty'],
+    // min: [1, 'Price value should be at least 1'],
+    // max: [2000, 'Price cannot exceed 2000'],
+    validate: [
+      {
+        validator: function (value) {
+          return value > 0 && value % 5 === 0;
+        },
+        message: 'Price must be a non-zero, positive multiple of 5',
+      },
+      {
+        validator: function (value) {
+          return value <= 100000;
+        },
+        message: 'Price cannot exceed 100K',
+      },
+    ],
   },
   category: String,
 });

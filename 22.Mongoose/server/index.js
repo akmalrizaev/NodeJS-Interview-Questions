@@ -9,7 +9,7 @@ async function main() {
   const newProduct = new Product({
     id: 4,
     name: 'Product 4',
-    price: 22.6,
+    price: 150000,
     category: 'Electronics',
   });
 
@@ -17,4 +17,4 @@ async function main() {
   console.log('Product saved: ', newProduct);
 }
 
-main().catch((err) => console.error());
+main().catch((err) => console.error(err.message));
