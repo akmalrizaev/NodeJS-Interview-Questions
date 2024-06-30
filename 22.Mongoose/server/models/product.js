@@ -6,7 +6,11 @@ const productSchema = new mongoose.Schema({
     required: [true, 'Id is required'],
     default: 3,
   },
-  name: String,
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   price: Number,
   category: String,
 });
