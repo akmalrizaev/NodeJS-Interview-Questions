@@ -7,9 +7,9 @@ async function main() {
   console.log('Database Connected');
 
   const newProduct = new Product({
-    id: 1,
-    name: 'Product 1',
-    price: 89.2,
+    id: 4,
+    name: 'Product 4',
+    price: 22.6,
     category: 'Electronics',
   });
 
