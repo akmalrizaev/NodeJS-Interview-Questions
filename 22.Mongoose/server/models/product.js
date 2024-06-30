@@ -10,6 +10,8 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    minLength: [2, 'Characters limit not met'],
+    maxLength: [15, 'Characters exceed the given length'],
   },
   price: Number,
   category: String,
