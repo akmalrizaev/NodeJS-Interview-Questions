@@ -3,3 +3,8 @@ const socket = io();
 socket.on('connect', () => {
   console.log('Socket Client: ', socket.id);
 });
+
+socket.on('welcome', (onlineUsers) => {
+  console.log('Welcome to the server');
+  console.log('Users online: ', onlineUsers);
+});

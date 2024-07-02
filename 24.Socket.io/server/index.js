@@ -10,12 +10,19 @@ const server = app.listen(PORT, () => {
   console.log(`Server started on PORT ${PORT}`);
 });
 
+let onlineUsers = 0;
+
 const io = new Server(server);
 
 io.on('connection', (socket) => {
   console.log('Socket connection established: ' + socket.id);
+  onlineUsers++;
+
+  socket.emit('welcome', onlineUsers);
+
   socket.on('disconnect', () => {
     console.log('Client disconnected: ', socket.id);
+    onlineUsers--;
   });
 });
 
