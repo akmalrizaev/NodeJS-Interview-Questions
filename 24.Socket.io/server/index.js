@@ -19,6 +19,8 @@ io.on('connection', (socket) => {
   onlineUsers++;
 
   socket.emit('welcome', onlineUsers);
+  //   io.emit('userConnected', socket.id);
+  socket.broadcast.emit('userConnected', socket.id);
 
   socket.on('disconnect', () => {
     console.log('Client disconnected: ', socket.id);
