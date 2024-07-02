@@ -14,6 +14,9 @@ const io = new Server(server);
 
 io.on('connection', (socket) => {
   console.log('Socket connection established: ' + socket.id);
+  socket.on('disconnect', () => {
+    console.log('Client disconnected: ', socket.id);
+  });
 });
 
 // Built-in function that raises an event for the entire socket.io server
